@@ -1,0 +1,92 @@
+/* General Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    background: #e0e5ec;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    width: 90%;
+    max-width: 400px;
+    background: #e0e5ec;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 8px 8px 15px #b8bec6, -8px -8px 15px #ffffff;
+}
+
+h1 {
+    font-size: 22px;
+    color: #4a4a4a;
+    text-shadow: 1px 1px 0px #fff;
+}
+
+/* Neumorphic Input */
+.input-container {
+    display: flex;
+    justify-content: space-between;
+    background: #e0e5ec;
+    border-radius: 10px;
+    padding: 5px;
+    box-shadow: inset 5px 5px 10px #b8bec6, inset -5px -5px 10px #ffffff;
+}
+
+input {
+    flex: 1;
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 16px;
+    padding: 10px;
+    border-radius: 10px;
+    color: #333;
+}
+
+/* Neumorphic Button */
+button {
+    background: #e0e5ec;
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px #b8bec6, -5px -5px 10px #ffffff;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+button:hover {
+    box-shadow: inset 3px 3px 6px #b8bec6, inset -3px -3px 6px #ffffff;
+}
+
+/* Result Text */
+#result {
+    margin-top: 15px;
+    font-size: 16px;
+    color: #4a4a4a;
+    word-break: break-word;
+}
+
+a {
+    color: #3498db;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Responsive */
+@media (max-width: 500px) {
+    .container {
+        width: 95%;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
+    input, button {
+        font-size: 14px;
+    }
+}

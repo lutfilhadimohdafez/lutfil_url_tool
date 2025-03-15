@@ -3,26 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>URL Shortener</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 50px;
-        }
-        input, button {
-            padding: 10px;
-            margin: 5px;
-        }
-    </style>
+    <title>Neumorphic URL Shortener</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h1>URL Shortener</h1>
-    <form id="shorten-form">
-        <input type="text" id="original-url" placeholder="Enter URL" required>
-        <button type="submit">Shorten</button>
-    </form>
-    <p id="result"></p>
+    <div class="container">
+        <h1>Neumorphic URL Shortener</h1>
+        <form id="shorten-form">
+            <div class="input-container">
+                <input type="text" id="original-url" placeholder="Enter URL" required>
+                <button type="submit">🔗</button>
+            </div>
+        </form>
+        <p id="result"></p>
+    </div>
 
     <script>
         document.getElementById("shorten-form").addEventListener("submit", async function(event) {
