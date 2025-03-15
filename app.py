@@ -19,7 +19,7 @@ DATABASE_URL = os.getenv("DATABASE_URL", "postgres://user:password@host:port/dbn
 DATABASE_URL = DATABASE_URL.replace("postgres://", "postgresql://", 1)
 
 # Base URL for short links
-BASE_URL = os.getenv("BASE_URL", "http://127.0.0.1:5000")
+BASE_URL = os.getenv("BASE_URL", "https://lutfil-url-tools.onrender.com/")
 
 
 # Function to connect to PostgreSQL safely
