@@ -41,13 +41,16 @@
             const resultBox = document.getElementById("result");
 
             if (data.short_url) {
-                resultBox.innerHTML = `Shortened URL: <a href="${data.short_url}" target="_blank">${data.short_url}</a>`;
-                resultBox.style.display = "block"; // Show the result box
+                resultBox.innerHTML = `<p>Shortened URL:</p><a href="${data.short_url}" target="_blank">${data.short_url}</a>`;
+                resultBox.style.display = "block";
+                resultBox.style.opacity = "1"; // Fade in
             } else {
-                resultBox.innerText = "Error shortening URL.";
-                resultBox.style.display = "block"; // Show error message in box
+                resultBox.innerHTML = "<p>Error shortening URL.</p>";
+                resultBox.style.display = "block";
+                resultBox.style.opacity = "1";
             }
         });
+
 
     </script>
 

@@ -65,16 +65,39 @@ button:active {
 /* Neumorphic result box */
 /* Hide result box by default */
 #result {
-    display: none; /* Hide initially */
-    margin: 20px;
-    padding: 15px;
+    display: none;
+    /* Initially hidden */
+    margin-top: 15px;
+    padding: 12px 15px;
     background: #e0e5ec;
     border-radius: 10px;
     box-shadow: 7px 7px 15px #a3b1c6, -7px -7px 15px #ffffff;
-    width: 100%;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
     word-break: break-word;
-    font-size: 14px;
+    transition: opacity 0.3s ease-in-out;
+    /* Smooth fade-in */
 }
+
+/* Ensure text and link appear on separate lines */
+#result p {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+#result a {
+    display: block;
+    color: #007bff;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+#result a:hover {
+    text-decoration: underline;
+}
+
 
 
 /* Responsive Design */
