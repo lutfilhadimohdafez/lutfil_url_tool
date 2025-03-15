@@ -4,6 +4,7 @@ import random
 import string
 import os
 import logging
+import validators
 from dotenv import load_dotenv
 
 # Load environment variables
@@ -75,27 +76,31 @@ def home():
 # Route to shorten a URL
 @app.route('/shorten', methods=['POST'])
 def shorten_url():
-    # Handle both JSON and form data
-    original_url = request.json.get("original_url") if request.is_json else request.form.get("original_url")
+    data = request.get_json()
+    original_url = data.get("original_url")
 
     if not original_url:
         return jsonify({"error": "Missing URL"}), 400
 
+    # Ensure URL starts with http:// or https://
+    if not original_url.startswith(('http://', 'https://')):
+        original_url = "https://" + original_url
+
+    # Validate the final URL
+    if not validators.url(original_url):
+        return jsonify({"error": "Invalid URL format"}), 400
+
     short_code = generate_short_code()
-    if not short_code:
-        return jsonify({"error": "Failed to generate short code"}), 500
 
     conn = get_db_connection()
-    if conn:
-        cursor = conn.cursor()
-        cursor.execute("INSERT INTO urls (short_code, original_url, clicks) VALUES (%s, %s, 0)",
-                       (short_code, original_url))
-        conn.commit()
-        cursor.close()
-        conn.close()
-        return jsonify({"short_url": f"{BASE_URL}/{short_code}"})
+    cursor = conn.cursor()
+    cursor.execute("INSERT INTO urls (short_code, original_url, clicks) VALUES (%s, %s, 0)",
+                   (short_code, original_url))
+    conn.commit()
+    cursor.close()
+    conn.close()
 
-    return jsonify({"error": "Database connection failed"}), 500
+    return jsonify({"short_url": f"{BASE_URL}/{short_code}"})
 
 
 # Route to redirect to original URL
