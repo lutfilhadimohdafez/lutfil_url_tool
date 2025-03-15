@@ -21,12 +21,20 @@
     <script>
         document.getElementById("shorten-form").addEventListener("submit", async function(event) {
             event.preventDefault();
-            const originalUrl = document.getElementById("original-url").value;
+            
+            let originalUrl = document.getElementById("original-url").value.trim();
+    
+            // Check if the URL starts with http:// or https://, if not, add https://
+            if (!originalUrl.match(/^https?:\/\//i)) {
+                originalUrl = "https://" + originalUrl;
+            }
+    
             const response = await fetch("/shorten", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ original_url: originalUrl })
             });
+    
             const data = await response.json();
             if (data.short_url) {
                 document.getElementById("result").innerHTML = `Shortened URL: <a href="${data.short_url}" target="_blank">${data.short_url}</a>`;
@@ -35,5 +43,6 @@
             }
         });
     </script>
+    
 </body>
 </html>
