@@ -63,8 +63,10 @@ button:active {
 }
 
 /* Neumorphic result box */
+/* Hide result box by default */
 #result {
-    margin-top: 20px;
+    display: none; /* Hide initially */
+    margin: 20px;
     padding: 15px;
     background: #e0e5ec;
     border-radius: 10px;
@@ -73,6 +75,7 @@ button:active {
     word-break: break-word;
     font-size: 14px;
 }
+
 
 /* Responsive Design */
 @media (max-width: 480px) {

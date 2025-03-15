@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Neumorphic URL Shortener</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
+
 <body>
     <div class="container">
         <h1>Lutfil's URL Redirector</h1>
@@ -19,30 +21,36 @@
     </div>
 
     <script>
-        document.getElementById("shorten-form").addEventListener("submit", async function(event) {
+        document.getElementById("shorten-form").addEventListener("submit", async function (event) {
             event.preventDefault();
-            
+
             let originalUrl = document.getElementById("original-url").value.trim();
-    
-            // Check if the URL starts with http:// or https://, if not, add https://
+
+            // Ensure URL starts with http:// or https://
             if (!originalUrl.match(/^https?:\/\//i)) {
                 originalUrl = "https://" + originalUrl;
             }
-    
+
             const response = await fetch("/shorten", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ original_url: originalUrl })
             });
-    
+
             const data = await response.json();
+            const resultBox = document.getElementById("result");
+
             if (data.short_url) {
-                document.getElementById("result").innerHTML = `Shortened URL: <a href="${data.short_url}" target="_blank">${data.short_url}</a>`;
+                resultBox.innerHTML = `Shortened URL: <a href="${data.short_url}" target="_blank">${data.short_url}</a>`;
+                resultBox.style.display = "block"; // Show the result box
             } else {
-                document.getElementById("result").innerText = "Error shortening URL.";
+                resultBox.innerText = "Error shortening URL.";
+                resultBox.style.display = "block"; // Show error message in box
             }
         });
+
     </script>
-    
+
 </body>
+
 </html>
